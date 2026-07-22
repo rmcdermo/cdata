@@ -1,8 +1,12 @@
 \documentclass[12pt,twoside]{book}
 
-\input{../../cfast-fork/Manuals/Bibliography/commoncommands}
+\IfFileExists{../../cfast/Manuals/Bibliography/commoncommands.tex}
+  {\input{../../cfast/Manuals/Bibliography/commoncommands}}
+  {\input{../../cfast-fork/Manuals/Bibliography/commoncommands}}
 
-\addbibresource{../../cfast-fork/Manuals/Bibliography/CFAST_refs.bib}
+\IfFileExists{../../cfast/Manuals/Bibliography/CFAST_refs.bib}
+  {\addbibresource{../../cfast/Manuals/Bibliography/CFAST_refs.bib}}
+  {\addbibresource{../../cfast-fork/Manuals/Bibliography/CFAST_refs.bib}}
 
 \begin{document}
 
@@ -1100,7 +1104,9 @@ Flashover is a term describing the transition of a relatively localized interior
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=6.0000in]{../../cfast-fork/Manuals/CFAST_Validation_Guide/FIGURES/flashover.pdf}\\
+\IfFileExists{../../cfast/Manuals/CFAST_Validation_Guide/FIGURES/flashover.pdf}
+  {\includegraphics[width=6.0000in]{../../cfast/Manuals/CFAST_Validation_Guide/FIGURES/flashover.pdf}}
+  {\includegraphics[width=6.0000in]{../../cfast-fork/Manuals/CFAST_Validation_Guide/FIGURES/flashover.pdf}}\\
 \end{center}
 \caption{Comparison of correlations, CFAST predictions, and experimental data for the prediction of flashover in a compartment fire.}
  \label{figValidFlashover}

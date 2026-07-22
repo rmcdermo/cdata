@@ -9,7 +9,11 @@
 
 # The variable VPATH defines where the source code is relative to the current directory
 
-CFAST_REPO = ../../../../cfast-fork
+CFAST_REPO_CANDIDATES = ../../../../cfast ../../../../cfast-fork
+CFAST_REPO ?= $(firstword $(wildcard $(CFAST_REPO_CANDIDATES)))
+ifeq ($(strip $(CFAST_REPO)),)
+  CFAST_REPO = ../../../../cfast
+endif
 
 VPATH = ../../../Source/Cdata ../../../Source/CFAST $(CFAST_REPO)/Source/CFAST
 VERSION=Test

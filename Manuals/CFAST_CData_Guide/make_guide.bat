@@ -2,6 +2,7 @@
 set paper=CFAST_CData_Guide
 
 git describe --long --dirty --always > gitinfo.txt
+if errorlevel 1 if exist ..\..\cfast git -C ..\..\cfast describe --long --dirty --always > gitinfo.txt
 if errorlevel 1 git -C ..\..\cfast-fork describe --long --dirty --always > gitinfo.txt
 set /p gitrevision=<gitinfo.txt
 if not exist ..\Bibliography mkdir ..\Bibliography

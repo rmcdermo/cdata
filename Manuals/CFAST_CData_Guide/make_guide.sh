@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # Add LaTeX search path; Paths are ':' separated
-export TEXINPUTS=".:../../cfast-fork/Manuals/LaTeX_Style_Files:"
+if [ -d ../../cfast ]; then
+    CFAST_REPO=../../cfast
+else
+    CFAST_REPO=../../cfast-fork
+fi
+
+export TEXINPUTS=".:${CFAST_REPO}/Manuals/LaTeX_Style_Files:"
 
 clean_build=1
 
@@ -9,7 +15,7 @@ doc=CFAST_CData_Guide
 docpdf=${doc}.pdf
 rm -f $docpdf
 # Build guide
-gitrevision=`git describe --long --dirty --always 2>/dev/null || git -C ../../cfast-fork describe --long --dirty --always`
+gitrevision=`git describe --long --dirty --always 2>/dev/null || git -C "$CFAST_REPO" describe --long --dirty --always`
 mkdir -p ../Bibliography
 echo "\\newcommand{\\gitrevision}{$gitrevision}" > ../Bibliography/gitrevision.tex
 pdflatex -interaction nonstopmode $doc &> $doc.err
